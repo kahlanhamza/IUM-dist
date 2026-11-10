@@ -1,6 +1,9 @@
 <div align="center">
 
-  <img src="assets/logo.svg" width="96" alt="The IUM logomark — the dart: two smooth concentric arcs on one bow, round caps, one flat ink" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-white.svg" />
+    <img src="assets/logo.svg" width="96" alt="The IUM logomark — the dart: two smooth concentric arcs on one bow, round caps, one flat ink" />
+  </picture>
 
   # IUM
 
