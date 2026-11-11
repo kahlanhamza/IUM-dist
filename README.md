@@ -56,7 +56,7 @@ instead of pretending it can resume.
 |---|---|
 | **Crash-safe by construction** | Kill the app, close the lid, lose the network — the upload resumes byte-exact with zero already-confirmed bytes re-sent. The journal is the only source of truth, and it survives everything. |
 | **Verify-before-declare** | A job reaches Done only after the destination confirms the assembled object. Every failure carries its own written reason — open the inspector and read what actually happened. |
-| **Every destination, one form** | S3-compatible buckets (Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, AWS S3, MinIO — anything speaking the S3 API), Nextcloud and any WebDAV server, Google Drive, YouTube, Mega, TeraBox, Feishu, plain HTTP and TUS. Credentials are set once and stored in your OS keychain. |
+| **Every destination, one form** | S3-compatible buckets (Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, AWS S3, MinIO — anything speaking the S3 API), Nextcloud and any WebDAV server, Google Drive, YouTube, Mega, TeraBox, Feishu, plain HTTP and TUS. The form's provider picker builds the destination for you; credentials are set once and stored in your OS keychain. |
 | **Adaptive engine** | Dynamic chunk pool, slow-connection eviction voted on measured throughput, per-error-class retry budgets — every path ends in Done or Failed, never in a lie. |
 | **Built for KB/s links** | IUM measures the wire before committing, shrinks pieces to fit the slowest moment, and treats a busy destination as a wait — not a failure. |
 | **Polite by default** | A global speed cap keeps IUM from starving everything else on your network; OS notifications only when you're away from the window. |
@@ -67,12 +67,14 @@ instead of pretending it can resume.
 | Destination | Protocol | Resume | Notes |
 |---|---|---|---|
 | HTTP | plain `PUT` | ⚠️ restart-from-zero | streaming from disk, server-side verify |
-| S3-compatible | S3 multipart | ✅ per-part | AWS S3, Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, MinIO — anything speaking the S3 API |
+| S3-compatible | S3 multipart | ✅ per-part | AWS S3, Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, MinIO — the form's provider picker builds the URL, keys set once in Settings |
 | TUS 1.0.0 | TUS | ✅ byte-level | server-acked offsets, drifted uploads realign |
 | WebDAV | WebDAV `PUT` | bridge-declared | Nextcloud, ownCloud, any WebDAV server — connect with URL + username + password |
 | Google Drive | Drive resumable | bridge-declared | one-click sign-in in your browser |
 | YouTube | resumable upload API | ✅ byte-level | uploads are private by default |
 | Terabox · Feishu · Mega | native bridges | bridge-declared | connect the account, the upload begins |
+
+**You don't need to know what an endpoint URL is.** The upload form asks "where should files go?" — pick a provider, name your bucket, and the destination builds itself, with a deep link to the provider's key console and a test button that checks your keys before the first job. A finished upload can hand you a private, expiring share link. Anything else still takes a pasted URL — power users lose nothing.
 
 Where a server physically cannot resume, the UI says **One-shot ⚠️** instead of pretending.
 The badge comes from the destination's declared capabilities — never hard-coded.
