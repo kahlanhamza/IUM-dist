@@ -3,6 +3,31 @@
 All notable user-facing changes to IUM are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/).
 
+## [0.2.3] — 2026-11-11
+
+### Added
+- **The destination picker.** The upload form now leads with "where should files
+  go?" — pick a known provider (Backblaze B2, Cloudflare R2, Wasabi, Scaleway,
+  DigitalOcean Spaces, Filebase, self-hosted MinIO), name your bucket, and the
+  destination URL builds itself. Each provider carries a deep link to its key
+  console and a short recipe. Custom URL stays the default: paste any
+  destination exactly as before.
+- **A working Test button for S3 lanes.** Check your keys and bucket before the
+  first job — IUM opens and aborts its own tiny probe session, so the check
+  never touches your objects.
+- **Expiring share links.** A finished S3 upload can hand you a signed download
+  link that opens for 24 hours and then expires — minted on demand from your
+  own keys; nothing is made public until you ask.
+- **The guided region is the signing region.** The region you pick in the form
+  is remembered for the lane, so the request signature always matches the
+  destination.
+
+### Fixed
+- **The provider list matches the providers' own current documentation.**
+  Filebase's general S3 endpoint is `s3.filebase.io`; Wasabi offers all 16
+  documented regions; DigitalOcean Spaces all 13; Backblaze B2 gained
+  `us-east-005` and dropped an uncorroborated region.
+
 ## [0.2.2] — 2026-11-11
 
 ### Changed
