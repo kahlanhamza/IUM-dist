@@ -9,9 +9,11 @@
 
   **Reliability-engineered uploads for your desktop.**
 
-  One window, any destination — S3-compatible storage, WebDAV, Google Drive,
-  YouTube, Terabox, Feishu, Mega, plain HTTP, TUS — with resume that actually
-  resumes, and progress that never lies to you.
+  One window, any destination — Backblaze B2, Cloudflare R2, Wasabi, Scaleway,
+  DigitalOcean Spaces, Filebase, AWS S3, MinIO and anything else speaking the
+  S3 API; Nextcloud and any WebDAV server; Google Drive, YouTube, Mega,
+  TeraBox, Feishu; plain HTTP and TUS — with resume that actually resumes, and
+  progress that never lies to you.
 
   [Download](#download) · [Verify](#verify-your-download) · [Install](#install) · [User Guide](USERGUIDE.md) · [What's new](CHANGELOG.md)
 
@@ -54,7 +56,7 @@ instead of pretending it can resume.
 |---|---|
 | **Crash-safe by construction** | Kill the app, close the lid, lose the network — the upload resumes byte-exact with zero already-confirmed bytes re-sent. The journal is the only source of truth, and it survives everything. |
 | **Verify-before-declare** | A job reaches Done only after the destination confirms the assembled object. Every failure carries its own written reason — open the inspector and read what actually happened. |
-| **Every destination, one form** | S3-compatible buckets (AWS S3, Cloudflare R2, MinIO, Wasabi…), WebDAV, Google Drive, YouTube, Terabox, Feishu, Mega, plain HTTP and TUS servers. Credentials are set once and stored in your OS keychain. |
+| **Every destination, one form** | S3-compatible buckets (Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, AWS S3, MinIO — anything speaking the S3 API), Nextcloud and any WebDAV server, Google Drive, YouTube, Mega, TeraBox, Feishu, plain HTTP and TUS. Credentials are set once and stored in your OS keychain. |
 | **Adaptive engine** | Dynamic chunk pool, slow-connection eviction voted on measured throughput, per-error-class retry budgets — every path ends in Done or Failed, never in a lie. |
 | **Built for KB/s links** | IUM measures the wire before committing, shrinks pieces to fit the slowest moment, and treats a busy destination as a wait — not a failure. |
 | **Polite by default** | A global speed cap keeps IUM from starving everything else on your network; OS notifications only when you're away from the window. |
@@ -65,9 +67,9 @@ instead of pretending it can resume.
 | Destination | Protocol | Resume | Notes |
 |---|---|---|---|
 | HTTP | plain `PUT` | ⚠️ restart-from-zero | streaming from disk, server-side verify |
-| S3-compatible | S3 multipart | ✅ per-part | AWS S3, Cloudflare R2, MinIO, Wasabi |
+| S3-compatible | S3 multipart | ✅ per-part | AWS S3, Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, MinIO — anything speaking the S3 API |
 | TUS 1.0.0 | TUS | ✅ byte-level | server-acked offsets, drifted uploads realign |
-| WebDAV | WebDAV `PUT` | bridge-declared | connect with URL + username + password |
+| WebDAV | WebDAV `PUT` | bridge-declared | Nextcloud, ownCloud, any WebDAV server — connect with URL + username + password |
 | Google Drive | Drive resumable | bridge-declared | one-click sign-in in your browser |
 | YouTube | resumable upload API | ✅ byte-level | uploads are private by default |
 | Terabox · Feishu · Mega | native bridges | bridge-declared | connect the account, the upload begins |
