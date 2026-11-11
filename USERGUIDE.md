@@ -70,7 +70,7 @@ IUM's installers are **not code-signed yet**. That is a deliberate, known hold �
 ## 5. First upload
 
 1. **Launch IUM.** A splash shows the boot state in one live sentence — it reports the real state, and the main window appears either way.
-2. **Give the destination its credentials, once.** Open **Settings** and pick the lane you are using (S3-compatible storage, WebDAV, Google Drive, YouTube, Terabox, Feishu, Mega — each appears once its credentials are configured; lanes without credentials simply do not appear, nothing is half-broken). HTTP and TUS destinations need no credentials.
+2. **Give the destination its credentials, once.** Open **Settings** and pick the lane you are using (S3-compatible storage — Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, AWS S3, MinIO and anything else speaking the S3 API; WebDAV — Nextcloud, ownCloud, any WebDAV server; Google Drive, YouTube, Terabox, Feishu, Mega — each appears once its credentials are configured; lanes without credentials simply do not appear, nothing is half-broken). HTTP and TUS destinations need no credentials.
 3. **Create the job.** The new-upload form has four fields:
    - **Adapter** — the destination type (e.g. `s3_multipart` for any S3-compatible bucket: Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, AWS S3, MinIO…).
    - **Source** — the file on your machine.
