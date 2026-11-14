@@ -14,7 +14,7 @@ All releases live on the [Releases page](https://github.com/kahlanhamza/IUM-dist
 | macOS (Apple Silicon) | `.dmg` |
 | Windows | `.msi` (installer), `.exe` (setup wizard) |
 
-A current release ships exactly these installers — for example, v0.2.3 shipped `IUM_0.2.3_amd64.deb`, `IUM-0.2.3-1.x86_64.rpm`, `IUM_0.2.3_amd64.AppImage`, `IUM_0.2.3_aarch64.dmg`, `IUM_0.2.3_x64_en-US.msi`, and `IUM_0.2.3_x64-setup.exe`.
+A current release ships exactly these installers — for example, v0.2.4 shipped `IUM_0.2.4_amd64.deb`, `IUM-0.2.4-1.x86_64.rpm`, `IUM_0.2.4_amd64.AppImage`, `IUM_0.2.4_aarch64.dmg`, `IUM_0.2.4_x64_en-US.msi`, and `IUM_0.2.4_x64-setup.exe`.
 
 Alongside the installers you will find `SHA256SUMS.txt` (checksums for every file) and `latest.json` (what the built-in updater reads).
 
@@ -37,7 +37,7 @@ shasum -a 256 -c SHA256SUMS.txt
 **Windows (PowerShell or Command Prompt)**
 
 ```bat
-certutil -hashfile IUM_0.2.3_x64-setup.exe SHA256
+certutil -hashfile IUM_0.2.4_x64-setup.exe SHA256
 ```
 
 …then compare the printed hash with the matching line in `SHA256SUMS.txt`.
@@ -70,7 +70,7 @@ IUM's installers are **not code-signed yet**. That is a deliberate, known hold �
 ## 5. First upload
 
 1. **Launch IUM.** A splash shows the boot state in one live sentence — it reports the real state, and the main window appears either way.
-2. **Give the destination its credentials, once.** Open **Settings** and pick the lane you are using (S3-compatible storage — Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, AWS S3, MinIO and anything else speaking the S3 API; WebDAV — Nextcloud, ownCloud, any WebDAV server; Google Drive, YouTube, Terabox, Feishu, Mega — each appears once its credentials are configured; lanes without credentials simply do not appear, nothing is half-broken). HTTP and TUS destinations need no credentials.
+2. **Give the destination its credentials, once.** Open **Settings** and pick the lane you are using (S3-compatible storage — Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, AWS S3, MinIO and anything else speaking the S3 API; WebDAV — Nextcloud, ownCloud, any WebDAV server; Google Drive, YouTube, Terabox, Feishu, Mega; **Dropbox and OneDrive are one click — press Connect and sign in through your own browser, the token stays in your OS keychain, and every finished upload is verified against the provider's own integrity hash before the job reports Done** — each appears once its credentials are configured; lanes without credentials simply do not appear, nothing is half-broken). HTTP and TUS destinations need no credentials.
 3. **Create the job.** The new-upload form leads with a **Provider** picker so you never have to assemble a URL by hand:
    - **Provider** — pick where your files go. Known providers (Backblaze B2, Cloudflare R2, Wasabi, Scaleway, DigitalOcean Spaces, Filebase, self-hosted MinIO) pre-fill the destination shape for you: fill in your bucket (and your region or account id where asked) and the destination URL derives itself. The region you pick is also the region IUM signs with — submit the job and it is remembered for the lane, so the signature always matches the destination. Each provider also carries a **Get your keys ↗** link straight to its key console and a short recipe for what to click. If your destination is not on the list — or you are the power-user kind — **Custom URL** is right there: paste any destination URL, exactly as before.
    - **Adapter** — the destination type. Picking a provider on an S3-compatible lane sets this to `s3_multipart` for you; leave it alone unless you know you want otherwise.
