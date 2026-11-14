@@ -3,6 +3,26 @@
 All notable user-facing changes to IUM are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/).
 
+## [0.2.5] — 2026-11-14
+
+### Fixed
+- **The connect sheets render one field per row**: Settings → connections
+  no longer crams several credential fields side by side; every field sits
+  on its own row, labels wrap instead of painting over each other, and the
+  S3 bucket-URL field is one clear line of copy (the example lives in the
+  note above it).
+- **The settings dialog and command palette stay opaque under Windows 11
+  Mica**: the dialog no longer prints the app content and wallpaper
+  through itself; what you read sits on a solid layer.
+- **Connect no longer opens a console window or a broken sign-in page**:
+  the sign-in page opens in your browser with the full request attached —
+  the scope Microsoft was refusing to see is back — and every background
+  helper hides its console window.
+- **First-launch reliability**: a cold first boot no longer strands the
+  app on "engine unreachable"; the interface retries within the boot
+  window and recovers on its own, so even a slow 30-second cold start
+  reaches a working window without a restart.
+
 ## [0.2.4] — 2026-11-14
 
 ### Added
