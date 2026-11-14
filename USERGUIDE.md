@@ -14,7 +14,7 @@ All releases live on the [Releases page](https://github.com/kahlanhamza/IUM-dist
 | macOS (Apple Silicon) | `.dmg` |
 | Windows | `.msi` (installer), `.exe` (setup wizard) |
 
-A current release ships exactly these installers — for example, v0.2.4 shipped `IUM_0.2.4_amd64.deb`, `IUM-0.2.4-1.x86_64.rpm`, `IUM_0.2.4_amd64.AppImage`, `IUM_0.2.4_aarch64.dmg`, `IUM_0.2.4_x64_en-US.msi`, and `IUM_0.2.4_x64-setup.exe`.
+A current release ships exactly these installers — for example, v0.2.5 shipped `IUM_0.2.5_amd64.deb`, `IUM-0.2.5-1.x86_64.rpm`, `IUM_0.2.5_amd64.AppImage`, `IUM_0.2.5_aarch64.dmg`, `IUM_0.2.5_x64_en-US.msi`, and `IUM_0.2.5_x64-setup.exe`.
 
 Alongside the installers you will find `SHA256SUMS.txt` (checksums for every file) and `latest.json` (what the built-in updater reads).
 
@@ -37,7 +37,7 @@ shasum -a 256 -c SHA256SUMS.txt
 **Windows (PowerShell or Command Prompt)**
 
 ```bat
-certutil -hashfile IUM_0.2.4_x64-setup.exe SHA256
+certutil -hashfile IUM_0.2.5_x64-setup.exe SHA256
 ```
 
 …then compare the printed hash with the matching line in `SHA256SUMS.txt`.
